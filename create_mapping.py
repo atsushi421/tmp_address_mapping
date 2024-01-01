@@ -1,7 +1,8 @@
 import csv
+from tqdm import tqdm
 
 
-MEMORY_SIZE = 10000000
+MEMORY_SIZE = 16777216
 
 APP1_START_V = '0x040000000'
 APP1_START_P = '0x104000000'
@@ -40,7 +41,7 @@ if __name__ == '__main__':
         writer = csv.writer(f)
         writer.writerow(['vaddr', '0b_vaddr[47:39]', 'vaddr[47:39]', '0b_vaddr[38:30]', 'vaddr[38:30]', '0b_vaddr[29:21]', 'vaddr[29:21]', '0b_vaddr[20:12]', 'vaddr[20:12]', '0b_vaddr[11:0]', '0x_vaddr[11:0]', 'paddr', '-offset_12_shifted'])
 
-        for i in range(MEMORY_SIZE):
+        for i in tqdm(range(1000)):
             vaddr = add_hex(APP1_START_V, i)
             vaddr_details = get_vaddr_details(vaddr)
             paddr = add_hex(APP1_START_P, i)
